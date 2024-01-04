@@ -28,4 +28,9 @@ def analyze_sentiment(text_content: str = "I am so happy and joyful.") -> None:
     # Get overall sentiment of the input document
     #print(f"score: {response.document_sentiment.score}, magnitude: {response.document_sentiment.magnitude}")
     print(f"score: {response.document_sentiment.score}, magnitude: {response.document_sentiment.magnitude}")
+    return response.document_sentiment.score, response.document_sentiment.magnitude
 
+
+
+#score, magnitude = analyze_sentiment('i really love to cycle')
+#print(f"score: {score}, magnitude: {magnitude}")
