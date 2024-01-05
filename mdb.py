@@ -1,9 +1,9 @@
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 from dotenv import load_dotenv
-import os
-import datetime
-import bson
+#import os
+#import datetime
+#import bson
 
 def insert_one(collection, document:dict):
     try:

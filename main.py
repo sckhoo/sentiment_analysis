@@ -12,10 +12,11 @@ load_dotenv()
 NEWSAPI = os.environ.get("NEWSAPI")
 MDB_USER = os.environ.get("MDB_USER")
 MDB_PW = os.environ.get("MDB_PW")
+MDB_DB = os.environ.get("MDB_DB")
 MDB_DB_INSTANCE = os.environ.get("MDB_DB_INSTANCE")
 MDB_DB_COLLECTION = os.environ.get("MDB_DB_COLLECTION")
 
-mdb_uri = "mongodb+srv://"+MDB_USER+":"+MDB_PW+"@workshop-bakery.uflbdbq.mongodb.net/?retryWrites=true&w=majority"
+mdb_uri = "mongodb+srv://"+MDB_USER+":"+MDB_PW+"@"+MDB_DB+".mongodb.net/?retryWrites=true&w=majority"
 client = MongoClient(mdb_uri, server_api=ServerApi('1'))
 
 try:
@@ -32,7 +33,7 @@ my_authors = ["The Star Online", "Malaysiakini", "Malay Mail", "New Straits Time
 
 # Init
 url = "https://newsapi.org/v2/top-headlines"  # Replace with the actual API endpoint
-params = {"category": "sports", "country":"my", "apiKey":NEWSAPI}
+params = {"category": "general", "country":"my", "apiKey":NEWSAPI}
 
 response = requests.get(url, params=params)
  
@@ -43,8 +44,8 @@ if response.status_code == 200:
     print(data['totalResults'])
     for article in data['articles']:
         if article['author'] in my_authors:
-            print("----")
-            print(f"Published: {article['publishedAt']} -> Author: {article['author']} -> Headline: {article['title']}")
+            #print("----")
+            #print(f"Published: {article['publishedAt']} -> Author: {article['author']} -> Headline: {article['title']}")
             score, magnitude = analyze_sentiment(article['title'])
             document = {
                 "publishedAt": article['publishedAt'],
